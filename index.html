@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create List with JS</title>
+</head>
+
+<body>
+  
+  <input type="text" id="bookmarkTitle" placeholder="Title" />
+  <input type="text" id="bookmarkUrl" placeholder="URL" />
+  <button id="addBookmark">Add Bookmark</button>
+
+
+
+
+
+  <script>
+    document.getElementById('addBookmark').addEventListener('click', () => {
+        const title = document.getElementById('bookmarkTitle').value;
+        const url = document.getElementById('bookmarkUrl').value;
+
+        if (title && url) {
+          chrome.bookmarks.create({ title: title, url: url }, (bookmark) => {
+            console.log('Bookmark added:', bookmark);
+            alert(`Bookmark "${bookmark.title}" added successfully!`);
+          });
+        } else {
+          alert('Please provide both a title and a URL.');
+        }
+      });
+
+  </script>
+</body>
+
+</html>
